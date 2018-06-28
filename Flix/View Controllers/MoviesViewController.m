@@ -47,6 +47,19 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Get Movies"
+                                                                           message:@"Internet Connection appears to be offline."
+                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 // handle response here.
+                                                             }];
+            // add the OK action to the alert controller
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:^{
+                // optional code for what happens after the alert controller has finished presenting
+            }];
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
