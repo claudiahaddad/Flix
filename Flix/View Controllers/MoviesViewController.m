@@ -94,6 +94,12 @@
     
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
     
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = UIColor.redColor;
+    cell.selectedBackgroundView = backgroundView;
+
+    
     NSDictionary *movie = self.filteredMovies[indexPath.row];
     
     cell.titleLabel.text = movie[@"title"];
@@ -128,11 +134,6 @@
                                         // do something for the failure condition
                                     }];
     
-   // NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
- //   NSString *posterURLString = movie[@"poster_path"];
-   // NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
-  //  NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-  //  [cell.posterView setImageWithURL:posterURL];
     
     return cell;
 
